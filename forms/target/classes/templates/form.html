@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formulario</title>
+</head>
+<body>
+	<form th:action="@{save}" th:object="${Preguntas}" method="post">
+		<fieldset>
+			<legend>Formulario</legend>
+			<table>
+				<th:block th:each="per : ${preguntas}">
+					<tr>
+						<td th:text="${per.Pregunta}">...</td>
+						<td><input type="text" th:id="${per.idPregunta}"
+							th:field="*{respuesta}" />
+							
+							<small class="form-text text-danger" th:if="${#fields.hasErrors('respuesta')}" th:errors="*{respuesta}"></small></td>
+					</tr>
+				</th:block>
+				<tr>
+					<td>
+						<button type="submit">Enviar</button>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+	</form>
+</body>
+</html>
